@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: web
+    env: dev
+  name: web-dev
+spec:
+  containers:
+  - image: docker.io/vipulbagal/node-sql:latest
+    imagePullPolicy: IfNotPresent
+    name: con
+    ports:
+    - containerPort: 9025
+      hostPort: 9025
+      name: http
+      protocol: TCP
+    resources:
+      limits:
+        cpu: 800m
+        memory: 1024Mi
+      requests:
+        cpu: 300m
+        memory: 400Mi
+  - name: mysql
+    image: mysql:latest
+    env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: root
+      - name: MYSQL_DATABASE
+        value: mydb
+
+
