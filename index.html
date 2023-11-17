@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Tracker</title>
+</head>
+<body>
+    <h1>Password Tracker</h1>
+    <p>Enter one of the five passwords:</p>
+    <input type="password" id="passwordInput">
+    <button onclick="checkPassword()">Submit</button>
+    <p id="passwordResult"></p>
+
+    <script>
+        let passwords = ['password1', 'password2', 'password3', 'password4', 'password5'];
+        let firstPassword = null;
+
+        function checkPassword() {
+            const enteredPassword = document.getElementById('passwordInput').value;
+
+            if (passwords.includes(enteredPassword)) {
+                if (!firstPassword) {
+                    firstPassword = enteredPassword;
+                }
+                document.getElementById('passwordResult').innerHTML = `Logged in with ${enteredPassword}. First login: ${firstPassword}`;
+            } else {
+                document.getElementById('passwordResult').innerHTML = 'Invalid password.';
+            }
+        }
+    </script>
+</body>
+</html>
